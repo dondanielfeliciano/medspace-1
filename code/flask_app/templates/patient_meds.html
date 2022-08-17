@@ -11,12 +11,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
         <h1 class="navbar-brand m-3">Welcome to Medspace, {{one_patient[0]['first_name']}}!!!</h1>
         <div class="my-2 my-lg-0 m-3">
-            <a href="">.........</a>
+            <a class="p-5" href="/patient_profile/{{session['patient_id']}}">Dashboard</a>
             <a class="p-4" href="/logout">Log Out</a>
         </div>
     </nav>
     <div class="p-5 m-5">
-        <h3>Medications list at {{one_pharmacy['name']}} located at {{one_pharmacy['address']}}:</h3>
+        <h3>Medications list at {{one_pharmacy[0]['name']}} located at {{one_pharmacy[0]['address']}}:</h3>
         <br>
         <table class="table table-striped">
             <thead>

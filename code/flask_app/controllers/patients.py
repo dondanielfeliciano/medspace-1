@@ -39,7 +39,7 @@ def patient_registration():
 @app.route("/patient_profile/<int:id>")
 def patient_profile(id):
     if 'patient_id' in session and session['patient_id'] == id:
-        return render_template("patient_profile.html", one_patient = Patient.get_one_patient({"id": id}), all_pharmacies = Pharmacy.get_all_pharmacies(), patient_id = session['patient_id'])
+        return render_template("patient_profile.html", one_patient = Patient.get_one_patient({"id": id}), all_unselected_pharmacies = Pharmacy.get_all_unselected_pharmacies({"id":id}), patient_id = session['patient_id'], pharmacies_added = Pharmacy.pharmacies_added({"id":id}))
     else:
         flash('Please sign in to access your profile!','patient_login')
         return redirect('/patients')

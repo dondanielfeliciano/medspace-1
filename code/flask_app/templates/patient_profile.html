@@ -15,22 +15,32 @@
             <a class="p-4" href="/logout">Log Out</a>
         </div>
     </nav>
-    <div class="p-5 m-5 w-75">
-        <h3>Choose your preferred pharmacies:</h3>
-        <br>
-        <table class="table table-striped">
-            <tbody>
-                {% if all_pharmacies %}
-                    {% for one_pharmacy in all_pharmacies %}
+    <div>
+        {% if pharmacies_added %}
+            <h3>Your pharmacies:</h3>
+            {% for pharmacy in pharmacies_added %}
+                <p>{{pharmacy.name}} at {{pharmacy.address}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% if all_unselected_pharmacies %}
+        <div class="p-5 m-5 w-75">
+            <h3>Choose your preferred pharmacies:</h3>
+            <p>after choosing a pharmacy you will be able to add all your prescriptions at that location</p>
+            <br>
+            <table class="table table-striped">
+                <tbody>
+                    {% for one_pharmacy in all_unselected_pharmacies %}
                         <tr>
                             <td><a href="/pharmacy/{{one_pharmacy['id']}}">{{one_pharmacy['name']}} located at: {{one_pharmacy['address']}}</a></td>
+                            
                             <td><a href="/patient_profile/{{patient_id}}/{{one_pharmacy['id']}}">Add pharmacy</a></td>
                         </tr>
                     {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
     <!-- <div class="p-5 m-5 w-50">
         <ul class="list-group">

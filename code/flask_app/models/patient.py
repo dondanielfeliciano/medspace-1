@@ -41,6 +41,11 @@ class Patient:
         query = 'select * from patients where email = %(email)s'
         return connectToMySQL(db).query_db(query,data)
 
+    @classmethod
+    def add_pharmacy(cls,data):
+        query = 'insert into patients_pharmacies (patient_id, pharmacy_id) values (%(patient_id)s, %(pharmacy_id)s)'
+        return connectToMySQL(db).query_db(query, data)
+
     # @classmethod
     # def get_bought_cars(cls,data):
     #     query = 'select * from users as buyers left join cars on buyers.id = cars.buyer_id left join users as sellers on sellers.id = cars.seller_id where buyers.id = %(id)s'

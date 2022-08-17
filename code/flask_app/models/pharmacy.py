@@ -40,6 +40,11 @@ class Pharmacy:
         return all_pharmacies
 
     @classmethod
+    def get_all_unselected_pharmacies(cls,data):
+        query = 'select * from pharmacies where id not in (select pharmacy_id from patients_pharmacies where patient_id = %(id)s)'
+        return connectToMySQL(db).query_db(query,data)
+
+    @classmethod
     def get_pharmacy_by_email(cls,data):
         query = 'select * from pharmacies where email = %(email)s'
         return connectToMySQL(db).query_db(query,data)
@@ -47,6 +52,11 @@ class Pharmacy:
     @classmethod
     def get_one_pharmacy(cls, data):
         query = 'select * from pharmacies where id = %(id)s'
+        return connectToMySQL(db).query_db(query, data)
+
+    @classmethod
+    def pharmacies_added(cls, data):
+        query = 'select * from patients_pharmacies left join pharmacies on pharmacy_id = pharmacies.id where patient_id = %(id)s'
         return connectToMySQL(db).query_db(query, data)
 
 
