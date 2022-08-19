@@ -19,7 +19,8 @@
         {% if pharmacies_added %}
             <h3>Your pharmacies:</h3>
             {% for pharmacy in pharmacies_added %}
-                <p>{{pharmacy.name}} at {{pharmacy.address}}</p>
+                <a href="/patient_profile/{{patient_id}}/{{pharmacy.id}}">{{pharmacy.name}} at {{pharmacy.address}}</a>
+                <br>
             {% endfor %}
         {% endif %}
     </div>
